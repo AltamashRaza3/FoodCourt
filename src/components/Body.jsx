@@ -1,5 +1,6 @@
 import React from "react";
 import SwiggyMockData from "./SwiggyMockData";
+import MockData from "./mockdata";
 
 const Body = () => {
   return (
@@ -25,6 +26,7 @@ const Body = () => {
 
       {/* Render restaurant cards */}
       <SwiggyMockData />
+      {/* <MockData/> */}
     </div>
   );
 };

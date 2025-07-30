@@ -20,7 +20,7 @@ const Footer = () => {
       <strong>
         FoodCourt
       </strong>
-    </div>
+    </div> 
   );
 };
 
