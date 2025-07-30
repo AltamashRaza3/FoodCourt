@@ -1,10 +1,18 @@
 import React from "react";
-import SwiggyMockData from "./SwiggyMockData";
-import MockData from "./mockdata";
+
+import MockData from "../utils/MockData";
 
 const Body = () => {
   return (
     <div className="body px-4 sm:px-6 md:px-10 pt-28">
+      {/* Filter Button */}
+      <button className="filter-btn px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none" 
+      onClick={()=>{
+        console.log("Button Clicked")
+      }}>
+        Top Rated Restarunts
+      </button>
+
       {/* Search Bar */}
       <div className="Search mb-6">
         <input
@@ -25,8 +33,7 @@ const Body = () => {
       </div>
 
       {/* Render restaurant cards */}
-      <SwiggyMockData />
-      {/* <MockData/> */}
+      <MockData />
     </div>
   );
 };
