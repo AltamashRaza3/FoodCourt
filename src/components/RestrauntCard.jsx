@@ -2,7 +2,7 @@ import React from "react";
 
 const RestrauntCard = ({
   resName,
-  cusine,
+  cuisine,
   imageUrl,
   rating,
   time,
@@ -11,7 +11,7 @@ const RestrauntCard = ({
   locality,
 }) => {
   return (
-    <div className="w-[200px] p-4 bg-white shadow-md rounded-lg cursor-pointer hover:shadow-xl hover:scale-105 transition duration-300 ease-in-out">
+    <div className="w-full p-4 bg-white shadow-md rounded-lg cursor-pointer transition duration-300 ease-in-out hover:shadow-lg hover:shadow-orange-300 hover:scale-105">
       <img
         src={imageUrl}
         alt={resName}
@@ -22,7 +22,7 @@ const RestrauntCard = ({
         }
       />
       <h3 className="text-lg font-semibold text-gray-800 mb-1">{resName}</h3>
-      <p className="text-sm text-gray-600">{cusine}</p>
+      <p className="text-sm text-gray-600">{cuisine}</p>
       <p className="text-sm text-gray-500">
         ⭐ {rating} • {time}
       </p>

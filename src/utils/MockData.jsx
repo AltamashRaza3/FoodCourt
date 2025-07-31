@@ -1,8 +1,8 @@
 import React from "react";
 import RestrauntCard from "../components/RestrauntCard";
 
-const MockData = () => {
-  const resObj = [
+
+ export const resObj = [
     {
       card: {
         restaurants: [
@@ -1119,16 +1119,15 @@ const MockData = () => {
       },
     },
   ];
-
- const restaurants = resObj[0]?.card?.restaurants || [];
+const MockData = () => {
+  const restaurants = resObj[0]?.card?.restaurants || [];
   return (
     <div className="grid grid-cols-2 sm:grid-cols-2 mt-6 md:grid-cols-3 lg:grid-cols-4 gap-6">
       {restaurants.map((res, i) => {
         const info = res.info;
-       const imageUrl = info.cloudinaryImageId
-         ? `https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_300,h_200,c_fill/${info.cloudinaryImageId}`
-         : "https://via.placeholder.com/300x200?text=No+Image";
-
+        const imageUrl = info.cloudinaryImageId
+          ? `https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_300,h_200,c_fill/${info.cloudinaryImageId}`
+          : "https://via.placeholder.com/300x200?text=No+Image";
 
         return (
           <RestrauntCard
