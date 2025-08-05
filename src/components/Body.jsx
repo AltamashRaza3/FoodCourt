@@ -1,25 +1,42 @@
-import React, { useState } from "react";
-import { resObj } from "../utils/MockData";
+import React, { useEffect, useState } from "react";
 import RestrauntCard from "./RestrauntCard";
 
 const Body = () => {
-  const allRestaurants = resObj[0]?.card?.restaurants || [];
-  const [listOfRestraunts, setListOfRestraunts] = useState(allRestaurants);
+  const [allRestaurants, setAllRestaurants] = useState([]);
+  const [listOfRestraunts, setListOfRestraunts] = useState([]);
   const [isFiltered, setIsFiltered] = useState(false);
+
+  useEffect(() => {
+    fetchData();
+  }, []);
+
+  const fetchData = async () => {
+    const data = await fetch(
+      "https://www.swiggy.com/dapi/restaurants/list/v5?lat=22.5399241&lng=88.3874402&collection=83639&tags=layout_CCS_Biryani&sortBy=&filters=&type=rcv2&offset=0&page_type=null"
+    );
+    const json = await data.json();
+
+    const restaurantCards = json?.data?.cards?.filter(
+      (card) =>
+        card?.card?.card?.["@type"] ===
+        "type.googleapis.com/swiggy.presentation.food.v2.Restaurant"
+    );
+
+    const restaurants = restaurantCards?.map((card) => card?.card?.card?.info);
+
+    // Set both all and filtered restaurants
+    setAllRestaurants(restaurants);
+    setListOfRestraunts(restaurants);
+  };
 
   const handleFilter = () => {
     if (isFiltered) {
-      // Show all restaurants
       setListOfRestraunts(allRestaurants);
       setIsFiltered(false);
     } else {
-      // Filter top-rated restaurants
-      const filteredList = allRestaurants.filter(
-        (res) => res.info.avgRating > 4.3 // Changed from 4.7 to 4.0 for more results
-      );
+      const filteredList = allRestaurants.filter((res) => res.avgRating > 4.3);
       setListOfRestraunts(filteredList);
       setIsFiltered(true);
-      console.log(filteredList);
     }
   };
 
@@ -37,7 +54,7 @@ const Body = () => {
         {isFiltered ? "Show All Restaurants" : "Top Rated Restaurants"}
       </button>
 
-      {/* Search Bar */}
+      {/* Search Bar (non-functional for now) */}
       <div className="Search mb-6">
         <input
           type="text"
@@ -46,7 +63,7 @@ const Body = () => {
         />
       </div>
 
-      {/* Section Heading */}
+      {/* Heading */}
       <div className="mb-6">
         <h2 className="text-2xl font-semibold text-white-800 mb-1">
           {isFiltered
@@ -55,15 +72,14 @@ const Body = () => {
         </h2>
         <p className="text-sm text-gray-500">
           {isFiltered
-            ? `Showing ${listOfRestraunts.length} restaurants with rating of 4.3`
+            ? `Showing ${listOfRestraunts.length} restaurants with rating above 4.3`
             : "Browse top-rated places to eat in your area."}
         </p>
       </div>
 
-      {/* Render restaurant cards */}
+      {/* Render cards */}
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-        {listOfRestraunts.map((res, i) => {
-          const info = res.info;
+        {listOfRestraunts.map((info, i) => {
           const imageUrl = info.cloudinaryImageId
             ? `https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_300,h_200,c_fill/${info.cloudinaryImageId}`
             : "https://via.placeholder.com/300x200?text=No+Image";
@@ -72,10 +88,10 @@ const Body = () => {
             <RestrauntCard
               key={info.id || i}
               resName={info.name}
-              cusine={info.cuisines?.join(", ")} 
+              cusine={info.cuisines?.join(", ")}
               imageUrl={imageUrl}
               rating={info.avgRating}
-              time={`${info.sla?.deliveryTime || "--"} mins`}
+              time={`${info?.sla?.deliveryTime || "--"} mins`}
               locality={info.locality}
               areaName={info.areaName}
               costForTwo={info.costForTwo}
@@ -84,7 +100,7 @@ const Body = () => {
         })}
       </div>
 
-      {/* Show message if no restaurants found */}
+      {/* No data fallback */}
       {listOfRestraunts.length === 0 && (
         <div className="text-center py-10">
           <p className="text-gray-500 text-lg">
