@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import RestrauntCard from "./RestrauntCard";
+import Shimmer from "./Shimmer";
 
 const Body = () => {
   const [allRestaurants, setAllRestaurants] = useState([]);
@@ -28,6 +29,9 @@ const Body = () => {
     setAllRestaurants(restaurants);
     setListOfRestraunts(restaurants);
   };
+  if(listOfRestraunts.length === 0){
+    return <Shimmer/>
+  }
 
   const handleFilter = () => {
     if (isFiltered) {
