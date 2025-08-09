@@ -29,6 +29,8 @@ const Body = () => {
     setAllRestaurants(restaurants);
     setListOfRestraunts(restaurants);
   };
+
+  //Conditonal Rendering
   if(listOfRestraunts.length === 0){
     return <Shimmer/>
   }
