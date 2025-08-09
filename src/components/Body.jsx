@@ -6,6 +6,7 @@ const Body = () => {
   const [allRestaurants, setAllRestaurants] = useState([]);
   const [listOfRestraunts, setListOfRestraunts] = useState([]);
   const [isFiltered, setIsFiltered] = useState(false);
+  const [searchText, setSearchText] = useState("");
 
   useEffect(() => {
     fetchData();
@@ -25,14 +26,12 @@ const Body = () => {
 
     const restaurants = restaurantCards?.map((card) => card?.card?.card?.info);
 
-    // Set both all and filtered restaurants
-    setAllRestaurants(restaurants);
-    setListOfRestraunts(restaurants);
+    setAllRestaurants(restaurants || []);
+    setListOfRestraunts(restaurants || []);
   };
 
-  //Conditonal Rendering
-  if(listOfRestraunts.length === 0){
-    return <Shimmer/>
+  if (allRestaurants.length === 0) {
+    return <Shimmer />;
   }
 
   const handleFilter = () => {
@@ -46,6 +45,14 @@ const Body = () => {
     }
   };
 
+  const handleSearch = () => {
+    const filteredRestraunts = allRestaurants.filter((res) =>
+      res.name.toLowerCase().includes(searchText.toLowerCase())
+    );
+    setListOfRestraunts(filteredRestraunts);
+    setIsFiltered(false); // Reset filter when searching
+  };
+
   return (
     <div className="body px-4 sm:px-6 md:px-10 pt-28">
       {/* Filter Button */}
@@ -53,20 +60,28 @@ const Body = () => {
         className={`filter-btn mb-2.5 px-4 py-2 border rounded-md shadow-sm focus:outline-none transition-colors ${
           isFiltered
             ? "bg-orange-500 text-white border-orange-500 hover:bg-orange-600"
-            : "border-gray-300 bg-white text-white hover:bg-gray-50"
+            : "border-gray-300 bg-white text-white-800 hover:bg-gray-50"
         }`}
         onClick={handleFilter}
       >
         {isFiltered ? "Show All Restaurants" : "Top Rated Restaurants"}
       </button>
 
-      {/* Search Bar (non-functional for now) */}
-      <div className="Search mb-6">
+      {/* Search Bar */}
+      <div className="Search mb-6 flex gap-2">
         <input
           type="text"
           placeholder="Search restaurants..."
-          className="w-full max-w-md px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-orange-400"
+          className="search-box w-full max-w-md px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-orange-400"
+          value={searchText}
+          onChange={(e) => setSearchText(e.target.value)}
         />
+        <button
+          className="px-4 py-2 bg-orange-500 text-white rounded-md hover:bg-orange-600"
+          onClick={handleSearch}
+        >
+          Search
+        </button>
       </div>
 
       {/* Heading */}
@@ -83,7 +98,7 @@ const Body = () => {
         </p>
       </div>
 
-      {/* Render cards */}
+      {/* Render Cards */}
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
         {listOfRestraunts.map((info, i) => {
           const imageUrl = info.cloudinaryImageId
