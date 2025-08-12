@@ -57,7 +57,7 @@ FoodCourt/
 
 1️⃣ Clone the repository
 
-git clone https://github.com/yourusername/FoodCourt.git
+git clone https://github.com/AltamashRaza3/FoodCourt.git
 cd FoodCourt
 
 2️⃣ Install dependencies
