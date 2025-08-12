@@ -1,9 +1,14 @@
 import React, { useState } from "react";
 import logo from "../assets/logo.png";
+import { useEffect } from "react";
 
 
 const Header = () => {
 const [btnName,setBtnName] = useState("Login")
+
+useEffect(()=>{
+  console.log("Useeffect called")
+},[])
 
   return (
     <div>
