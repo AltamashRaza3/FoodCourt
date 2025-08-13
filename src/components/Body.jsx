@@ -55,32 +55,36 @@ const Body = () => {
 
   return (
     <div className="body px-4 sm:px-6 md:px-10 pt-28">
-      {/* Filter Button */}
-      <button
-        className={`filter-btn mb-2.5 px-4 py-2 border rounded-md shadow-sm focus:outline-none transition-colors ${
-          isFiltered
-            ? "bg-orange-500 text-white border-orange-500 hover:bg-orange-600"
-            : "border-gray-300 bg-white text-white-800 hover:bg-gray-50"
-        }`}
-        onClick={handleFilter}
-      >
-        {isFiltered ? "Show All Restaurants" : "Top Rated Restaurants"}
-      </button>
+      {/* Filter + Search Row */}
+      <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between mb-6 gap-4">
+        {/* Filter Button */}
 
-      {/* Search Bar */}
-      <div className="Search mb-6 flex gap-2">
-        <input
-          type="text"
-          placeholder="Search restaurants..."
-          className="search-box w-full max-w-md px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-orange-400"
-          value={searchText}
-          onChange={(e) => setSearchText(e.target.value)}
-        />
+        {/* Search Bar */}
+        <div className="flex w-full lg:w-auto gap-2">
+          <input
+            type="text"
+            placeholder="Search restaurants..."
+            className="search-box w-full lg:w-94 px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-orange-400"
+            value={searchText}
+            onChange={(e) => setSearchText(e.target.value)}
+          />
+          <button
+            className="px-4 py-2 bg-orange-500 text-white rounded-md hover:text-orange-400"
+            onClick={handleSearch}
+          >
+            Search
+          </button>
+        </div>
+
         <button
-          className="px-4 py-2 bg-orange-500 text-white rounded-md hover:bg-orange-600"
-          onClick={handleSearch}
+          className={`filter-btn px-4 py-2 border rounded-md shadow-sm focus:outline-none transition-colors ${
+            isFiltered
+              ? "bg-orange-500 text-white border-orange-500 hover:bg-white hover:text-orange-600"
+              : "border-orange-500 bg-white text-orange-600 hover:bg-orange-500 hover:text-white"
+          }`}
+          onClick={handleFilter}
         >
-          Search
+          {isFiltered ? "Show All Restaurants" : "Top Rated Restaurants"}
         </button>
       </div>
 
