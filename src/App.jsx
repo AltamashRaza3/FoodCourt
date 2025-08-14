@@ -1,5 +1,5 @@
 
-import { createBrowserRouter, RouterProvider } from 'react-router-dom'
+import { createBrowserRouter, Outlet, RouterProvider } from 'react-router-dom'
 import './App.css'
 import Body from './components/Body'
 import Footer from './components/Footer'
@@ -7,32 +7,43 @@ import Header from './components/Header'
 import About from './components/About'
 import Contact from './components/Contact'
 import Error from './components/Error'
+import Cart from './components/Cart'
 
 const AppLayout= ()=>{
   return (
-    <div>
+    <div className='app'>
       <Header />
-      <Body />
-      <Footer />
+      <Outlet/>
+      <Footer/>
     </div>
   );
 }
 
-const router= createBrowserRouter([
+const router = createBrowserRouter([
   {
-    path:"/",
-    element: <AppLayout/>,
-    errorElement: <Error/>
+    path: "/",
+    element: <AppLayout />,
+    children: [
+      {
+        path:"/",
+        element: <Body/>
+      },
+      {
+        path: "/about",
+        element: <About />,
+      },
+      {
+        path: "/contact",
+        element: <Contact />,
+      },
+      {
+        path:"/cart",
+        element:<Cart/>
+      }
+    ],
+    errorElement: <Error />,
   },
-  {
-    path:"/about",
-    element: <About/>
-  },
-  {
-    path: "/contactus",
-    element: <Contact/>
-  }
-])
+]);
 
 function App() {
 
