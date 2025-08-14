@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import RestrauntCard from "./RestrauntCard";
 import Shimmer from "./Shimmer";
+import { Link } from "react-router-dom";
 
 const Body = () => {
   const [allRestaurants, setAllRestaurants] = useState([]);
@@ -110,17 +111,19 @@ const Body = () => {
             : "https://via.placeholder.com/300x200?text=No+Image";
 
           return (
-            <RestrauntCard
-              key={info.id || i}
-              resName={info.name}
-              cusine={info.cuisines?.join(", ")}
-              imageUrl={imageUrl}
-              rating={info.avgRating}
-              time={`${info?.sla?.deliveryTime || "--"} mins`}
-              locality={info.locality}
-              areaName={info.areaName}
-              costForTwo={info.costForTwo}
-            />
+            <Link key={info.id || i} to={`/restraunts/${info.id}`}>
+              <RestrauntCard
+                key={info.id || i}
+                resName={info.name}
+                cusine={info.cuisines?.join(", ")}
+                imageUrl={imageUrl}
+                rating={info.avgRating}
+                time={`${info?.sla?.deliveryTime || "--"} mins`}
+                locality={info.locality}
+                areaName={info.areaName}
+                costForTwo={info.costForTwo}
+              />
+            </Link>
           );
         })}
       </div>

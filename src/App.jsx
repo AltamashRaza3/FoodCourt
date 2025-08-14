@@ -8,6 +8,7 @@ import About from './components/About'
 import Contact from './components/Contact'
 import Error from './components/Error'
 import Cart from './components/Cart'
+import RestrauntMenu from './components/RestrauntMenu'
 
 const AppLayout= ()=>{
   return (
@@ -39,6 +40,10 @@ const router = createBrowserRouter([
       {
         path:"/cart",
         element:<Cart/>
+      },
+      {
+        path:"/restraunts/:resId",
+        element: <RestrauntMenu/>
       }
     ],
     errorElement: <Error />,
