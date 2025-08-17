@@ -37,17 +37,17 @@ Swiggy API – Live restaurant data
 📂 Folder Structure
 
 FoodCourt/
-│── public/               # Static files
-│── src/
+│ ── public/               # Static files
+│ ── src/
 │   ├── components/        # React components (Header, Body, RestrauntCard, Shimmer)
 │   ├── utils/             # Mock data or helpers
 │   ├── assets/            # Images & logos
 │   ├── App.jsx            # Main app component
 │   └── main.jsx           # Entry point
 │
-├── package.json
-├── tailwind.config.js
-├── vite.config.js
+├ ── package.json
+ ├── tailwind.config.js
+ ├── vite.config.js
 └── README.md
 
 
@@ -78,15 +78,6 @@ This app uses a public Swiggy API endpoint that may require CORS handling in som
 
 If API fails, you can switch to MockData.jsx for offline testing.
 
-
-
----
-
-📌 API Used
-
-Swiggy Restaurant API
-
-https://www.swiggy.com/dapi/restaurants/list/v5?lat=22.5399241&lng=88.3874402&collection=83639&tags=layout_CCS_Biryani
 
 
 ---
