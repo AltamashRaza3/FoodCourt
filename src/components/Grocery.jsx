@@ -1,7 +1,7 @@
 const Grocery =() =>{
   return(
     <h1>
-    Our grocery online store, and we have a lot of child component inside this web page 
+      Our Grocery store is comming very soon 
     </h1>
   )
 }
