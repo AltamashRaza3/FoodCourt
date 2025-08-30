@@ -9,7 +9,16 @@ import Contact from './components/Contact'
 import Error from './components/Error'
 import Cart from './components/Cart'
 import RestrauntMenu from './components/RestrauntMenu'
-import Grocery from './components/Grocery'
+import { lazy, Suspense } from 'react'
+import Shimmer from './components/Shimmer'
+
+// Lazy loading
+// Code Spilitting
+// Dynamic Bundling
+// Lazy Loading
+// on demand loading
+
+const Grocery = lazy(()=> import("./components/Grocery"))
 
 const AppLayout= ()=>{
   return (
@@ -27,8 +36,8 @@ const router = createBrowserRouter([
     element: <AppLayout />,
     children: [
       {
-        path:"/",
-        element: <Body/>
+        path: "/",
+        element: <Body />,
       },
       {
         path: "/about",
@@ -39,17 +48,21 @@ const router = createBrowserRouter([
         element: <Contact />,
       },
       {
-        path:"/cart",
-        element:<Cart/>
+        path: "/cart",
+        element: <Cart />,
       },
       {
-        path:"/restraunts/:resId",
-        element: <RestrauntMenu/>
+        path: "/restraunts/:resId",
+        element: <RestrauntMenu />,
       },
       {
-        path:"/grocery",
-        element:<Grocery/>
-      }
+        path: "/grocery",
+        element: (
+          <Suspense fallback={<Shimmer/>}>
+            <Grocery />
+          </Suspense>
+        ),
+      },
     ],
     errorElement: <Error />,
   },
