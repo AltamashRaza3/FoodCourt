@@ -30,10 +30,14 @@ useEffect(()=>{
                 <Link to="/about">About Us</Link>
               </li>
               <li className="hover:text-orange-500 cursor-pointer">
-               <Link to="/contact">Contact us</Link>
+                <Link to="/contact">Contact us</Link>
               </li>
               <li className="hover:text-orange-500 cursor-pointer">
-               <Link to="/cart">Cart</Link></li>
+                <Link to="/cart">Cart</Link>
+              </li>
+              <li className="hover:text-orange-500 cursor-pointer">
+                <Link to ="/grocery">Grocery</Link>
+              </li>
               <button
                 className="login px-4 py-1 border border-orange-500 rounded-md text-orange-500 hover:bg-orange-500 hover:text-white transition-colors"
                 onClick={() => {
