@@ -66,7 +66,7 @@ npm install
 
 3️⃣ Run the development server
 
-npm run dev
+npm run dev ----
 
 Vite will start a local dev server (default: http://localhost:5173).
 
