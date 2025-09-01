@@ -66,7 +66,7 @@ npm install
 
 3️⃣ Run the development server
 
-npm run dev ----
+npm run dev -----------
 
 Vite will start a local dev server (default: http://localhost:5173).
 
@@ -98,5 +98,5 @@ If API fails, you can switch to MockData.jsx for offline testing.
 
 📜 License
 
-This project is licensed under the MIT License – free to use and modify.
+This project is licensed under the MIT License – free to use and modif.
   
