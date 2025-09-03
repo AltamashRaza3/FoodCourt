@@ -98,5 +98,5 @@ If API fails, you can switch to MockData.jsx for offline testing.
 
 📜 License
 
-This project is licensed under the MIT License – free to use and modif.
+This project is licensed under the MIT License – free to use and modify.
   
