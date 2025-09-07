@@ -26,7 +26,7 @@ const AppLayout = () => {
   );
 };
 
-// ✅ basename should be passed as the second argument (options) to createBrowserRouter
+// basename should be passed as the second argument (options) to createBrowserRouter
 const router = createBrowserRouter(
   [
     {
@@ -66,7 +66,7 @@ const router = createBrowserRouter(
     },
   ],
   {
-    basename: "/FoodCourt", // 👈 Correct place
+    basename: "/FoodCourt",
   }
 );
 

@@ -80,8 +80,8 @@ const Body = () => {
         <button
           className={`filter-btn px-4 py-2 border rounded-md shadow-sm focus:outline-none transition-colors ${
             isFiltered
-              ? "bg-orange-500 text-white border-orange-500 hover:bg-white hover:text-orange-600"
-              : "border-orange-500 bg-white text-orange-600 hover:bg-orange-500 hover:text-white"
+              ? "bg-orange-500 text-gray-950 border-orange-500 hover:bg-white hover:text-orange-600"
+              : "border-orange-500 bg-white text-orange-600 hover:bg-orange-500 hover:text-gray-950"
           }`}
           onClick={handleFilter}
         >
