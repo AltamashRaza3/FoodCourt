@@ -70,7 +70,7 @@ const Body = () => {
             onChange={(e) => setSearchText(e.target.value)}
           />
           <button
-            className="px-4 py-2 bg-orange-500 text-white rounded-md hover:text-orange-400"
+            className="px-4 py-2 bg-black text-orange-500 font-semibold rounded-md hover:text-white hover:bg-black focus:outline-none focus:ring-2 focus:ring-orange-400 dark:bg-black dark:text-orange-500 dark:hover:text-white dark:hover:bg-black"
             onClick={handleSearch}
           >
             Search
