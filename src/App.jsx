@@ -1,82 +1,77 @@
-
-import { createBrowserRouter, Outlet, RouterProvider } from 'react-router-dom'
-import './App.css'
-import Body from './components/Body'
-import Footer from './components/Footer'
-import Header from './components/Header'
-import About from './components/About'
-import Contact from './components/Contact'
-import Error from './components/Error'
-import Cart from './components/Cart'
-import RestrauntMenu from './components/RestrauntMenu'
-import { lazy, Suspense } from 'react'
-import Shimmer from './components/Shimmer'
+import { createBrowserRouter, Outlet, RouterProvider } from "react-router-dom";
+import "./App.css";
+import Body from "./components/Body";
+import Footer from "./components/Footer";
+import Header from "./components/Header";
+import About from "./components/About";
+import Contact from "./components/Contact";
+import Error from "./components/Error";
+import Cart from "./components/Cart";
+import RestrauntMenu from "./components/RestrauntMenu";
+import { lazy, Suspense } from "react";
+import Shimmer from "./components/Shimmer";
 
 // Lazy loading
-// Code Spilitting
-// Dynamic Bundling
-// Lazy Loading
-// on demand loading
+const Grocery = lazy(() => import("./components/Grocery"));
 
-const Grocery = lazy(()=> import("./components/Grocery"))
-
-const AppLayout= ()=>{
+const AppLayout = () => {
   return (
-    <div className='app'>
+    <div className="app flex flex-col min-h-screen">
       <Header />
-      <Outlet/>
-      <Footer/>
+      <main className="flex-grow">
+        <Outlet />
+      </main>
+      <Footer />
     </div>
   );
-}
+};
 
-const router = createBrowserRouter([
+// ✅ basename should be passed as the second argument (options) to createBrowserRouter
+const router = createBrowserRouter(
+  [
+    {
+      path: "/",
+      element: <AppLayout />,
+      errorElement: <Error />,
+      children: [
+        {
+          path: "/",
+          element: <Body />,
+        },
+        {
+          path: "/about",
+          element: <About />,
+        },
+        {
+          path: "/contact",
+          element: <Contact />,
+        },
+        {
+          path: "/cart",
+          element: <Cart />,
+        },
+        {
+          path: "/restraunts/:resId",
+          element: <RestrauntMenu />,
+        },
+        {
+          path: "/grocery",
+          element: (
+            <Suspense fallback={<Shimmer />}>
+              <Grocery />
+            </Suspense>
+          ),
+        },
+      ],
+    },
+  ],
   {
-    path: "/",
-    element: <AppLayout />,
-    children: [
-      {
-        path: "/",
-        element: <Body />,
-      },
-      {
-        path: "/about",
-        element: <About />,
-      },
-      {
-        path: "/contact",
-        element: <Contact />,
-      },
-      {
-        path: "/cart",
-        element: <Cart />,
-      },
-      {
-        path: "/restraunts/:resId",
-        element: <RestrauntMenu />,
-      },
-      {
-        path: "/grocery",
-        element: (
-          <Suspense fallback={<Shimmer/>}>
-            <Grocery />
-          </Suspense>
-        ),
-      },
-    ],
-    errorElement: <Error />,
-  },
-]);
+    basename: "/FoodCourt", // 👈 Correct place
+  }
+);
 
 function App() {
-
-  return (
-    <>
-    <RouterProvider router= {router}/>
-   </>
-  )
+  return <RouterProvider router={router} />;
 }
 
-
-
-export default App
+export default App;
