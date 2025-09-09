@@ -32,12 +32,13 @@ const Footer = () => {
   ];
 
   return (
-    <footer className="bg-gray-900 text-gray-300">
+    <footer className="bg-gray-900 text-gray-300 min-h-[220px] flex flex-col justify-between">
+      
       {/* Top Grid */}
       <div className="container mx-auto px-6 py-12 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
         {columns.map((col) => (
           <div key={col.title}>
-            <h4 className="text-lg font-semibold mb-4">{col.title}</h4>
+            <h4 className="text-lg font-semibold mb-4 text-white">{col.title}</h4>
             <ul className="space-y-2">
               {col.links.map((link) => (
                 <li key={link.name}>
@@ -73,30 +74,33 @@ const Footer = () => {
 
       {/* Social Icons */}
       <div className="border-t border-gray-700">
-        <div className="container mx-auto px-6 py-6 flex justify-center space-x-6">
+        <div className="container mx-auto px-6 py-6 flex justify-center space-x-8">
           <a
             href="https://github.com/AltamashRaza3"
             target="_blank"
             rel="noreferrer"
+            aria-label="GitHub"
             className="hover:text-white transition-colors"
           >
-            <FaGithub size={22} />
+            <FaGithub size={24} />
           </a>
           <a
             href="https://www.linkedin.com/in/altamashraza3/"
             target="_blank"
             rel="noreferrer"
+            aria-label="LinkedIn"
             className="hover:text-blue-400 transition-colors"
           >
-            <FaLinkedin size={22} />
+            <FaLinkedin size={24} />
           </a>
           <a
             href="https://twitter.com"
             target="_blank"
             rel="noreferrer"
+            aria-label="Twitter"
             className="hover:text-sky-400 transition-colors"
           >
-            <FaTwitter size={22} />
+            <FaTwitter size={24} />
           </a>
         </div>
       </div>
@@ -104,13 +108,14 @@ const Footer = () => {
       {/* Bottom Bar */}
       <div className="bg-gray-800">
         <div className="container mx-auto px-6 py-4 flex flex-col md:flex-row items-center justify-between text-sm text-gray-400">
-          <p>
+          <p className="mb-2 md:mb-0">
             © {year}{" "}
-            <span className="font-semibold text-gray-200">Food Court</span>. All
+            <span className="font-semibold text-gray-200">FoodCourt</span>. All
             rights reserved.
           </p>
-          <p className="flex items-center gap-1 mt-2 md:mt-0">
-            Made with <FaHeart className="text-red-500 animate-pulse" /> by{" "}
+          <p className="flex items-center gap-1 mb-2 md:mb-0">
+            Made with{" "}
+            <FaHeart className="text-red-500 animate-pulse" aria-hidden="true" /> by{" "}
             <a
               href="https://www.linkedin.com/in/altamashraza3/"
               target="_blank"
@@ -120,7 +125,7 @@ const Footer = () => {
               Altamash Raza
             </a>
           </p>
-          <div className="flex space-x-4 mt-2 md:mt-0">
+          <div className="flex space-x-4">
             <NavLink
               to="#"
               className={({ isActive }) =>
@@ -129,7 +134,7 @@ const Footer = () => {
                   : "hover:text-gray-200 transition-colors"
               }
             >
-              Privacy Policy
+              Privacy Policy 
             </NavLink>
             <NavLink
               to="#"
