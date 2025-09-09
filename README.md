@@ -70,6 +70,7 @@ npm run dev -----------
 
 Vite will start a local dev server (default: http://localhost:5173).
 
+deployed on -- https://altamashraza3.github.io/FoodCourt/
 ---
 
 🔧 Environment Notes
