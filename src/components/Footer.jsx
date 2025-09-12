@@ -32,7 +32,7 @@ const Footer = () => {
   ];
 
   return (
-    <footer className="bg-gray-900 text-gray-300 min-h-[220px] flex flex-col justify-between">
+    <footer className="bg-gray-900 text-gray-300 min-h-[220px] flex flex-col justify-between w-full">
       
       {/* Top Grid */}
       <div className="container mx-auto px-6 py-12 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
