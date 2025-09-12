@@ -64,13 +64,16 @@ const RestrauntMenu = () => {
         <p className="text-gray-600">
           {resInfo.cuisines?.join(", ") || "No cuisines listed"}
         </p>
-        <div className="mt-3 flex flex-wrap gap-4 text-gray-700">
+        <div className="mt-3 flex flex-wrap items-center justify-center gap-4 text-gray-700">
           <span>⭐ {resInfo.avgRating || "N/A"}</span>
           <span>{resInfo.costForTwoMessage || "Cost info not available"}</span>
           <span>⏱ {resInfo?.sla?.deliveryTime || "--"} mins</span>
           <span>
             📍 {resInfo.locality || ""}, {resInfo.areaName || ""}
           </span>
+          <button className="bg-red-500 hover:bg-red-600 !bg-red-500 !hover:bg-red-600 text-white font-semibold px-4 py-2 rounded transition-colors duration-200">
+            Buy Now
+          </button>
         </div>
       </div>
 
