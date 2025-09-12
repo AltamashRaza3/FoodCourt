@@ -66,7 +66,7 @@ const Header = () => {
             <ul className="flex flex-col md:flex-row gap-6 items-center text-lg text-gray-700 font-medium px-6 py-4 md:p-0">
               {/* Online status inside nav for larger screens */}
               <li className="hidden md:block">
-                Online Status: {onlineStatus ? "🟢" : "🔴"}
+                {onlineStatus ? "🟢" : "🔴"}
               </li>
 
               <li className="hover:text-orange-500 cursor-pointer">
