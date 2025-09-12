@@ -66,7 +66,7 @@ const RestrauntMenu = () => {
         </p>
         <div className="mt-3 flex flex-wrap gap-4 text-gray-700">
           <span>⭐ {resInfo.avgRating || "N/A"}</span>
-          <span>{resInfo.costForTwo || "Cost info not available"}</span>
+          <span>{resInfo.costForTwoMessage || "Cost info not available"}</span>
           <span>⏱ {resInfo?.sla?.deliveryTime || "--"} mins</span>
           <span>
             📍 {resInfo.locality || ""}, {resInfo.areaName || ""}
