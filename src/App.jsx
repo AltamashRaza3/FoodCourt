@@ -11,7 +11,7 @@ import RestrauntMenu from "./components/RestrauntMenu";
 import { lazy, Suspense } from "react";
 import Shimmer from "./components/Shimmer";
 
-// Lazy loading
+// Lazy loading....
 const Grocery = lazy(() => import("./components/Grocery"));
 
 const AppLayout = () => {
