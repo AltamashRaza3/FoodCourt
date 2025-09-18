@@ -8,14 +8,27 @@ import Contact from "./components/Contact";
 import Error from "./components/Error";
 import Cart from "./components/Cart";
 import RestrauntMenu from "./components/RestrauntMenu";
-import { lazy, Suspense } from "react";
+import { lazy, Suspense, useEffect, useState } from "react";
 import Shimmer from "./components/Shimmer";
+import UserContext from "./utils/UserContext";
 
 // Lazy loading....
 const Grocery = lazy(() => import("./components/Grocery"));
 
 const AppLayout = () => {
+  const [userName, setUserName] = useState();
+  // Authentication 
+  useEffect(()=>{
+    // Make an API call and send username and Password
+    const data ={
+      name: "Altamash Raza",
+    };
+    setUserName(data.name);
+  },[])
+
+
   return (
+    <UserContext.Provider value={{loggedInUser: userName}}>
     <div className="app flex flex-col min-h-screen">
       <Header />
       <main className="flex-grow">
@@ -23,6 +36,8 @@ const AppLayout = () => {
       </main>
       <Footer />
     </div>
+    </UserContext.Provider>
+
   );
 };
 
