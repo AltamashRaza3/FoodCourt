@@ -1,12 +1,15 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect,useContext } from "react";
 import logo from "../assets/logo.png";
 import { Link } from "react-router-dom";
 import useOnlineStatus from "./UseOnlineStatus";
+import UserContext from "../utils/UserContext";
 
 const Header = () => {
   const [btnName, setBtnName] = useState("Login");
   const [menuOpen, setMenuOpen] = useState(false);
   const onlineStatus = useOnlineStatus();
+  const {loggedInUser} = useContext(UserContext);
+  
 
   useEffect(() => {
     console.log("Useeffect called");
@@ -65,9 +68,7 @@ const Header = () => {
           >
             <ul className="flex flex-col md:flex-row gap-6 items-center text-lg text-gray-700 font-medium px-6 py-4 md:p-0">
               {/* Online status inside nav for larger screens */}
-              <li className="hidden md:block">
-                {onlineStatus ? "🟢" : "🔴"}
-              </li>
+              <li className="hidden md:block">{onlineStatus ? "🟢" : "🔴"}</li>
 
               <li className="hover:text-orange-500 cursor-pointer">
                 <Link to="/" onClick={closeMenu}>
@@ -104,6 +105,9 @@ const Header = () => {
               >
                 {btnName}
               </button>
+              <li className="hover:text-orange-500 cursor-pointer">
+                {loggedInUser}
+              </li>
             </ul>
           </nav>
         </div>
