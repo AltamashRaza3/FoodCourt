@@ -30,7 +30,7 @@ const Header = () => {
 
           {/* Container for Online Status and Hamburger button, no gap */}
           <div className="flex items-center text-gray-900 md:hidden">
-            <div>{onlineStatus ? "🟢" : "🔴"}</div>
+            <div>{onlineStatus ? "✅" : "🔴"}</div>
             <button
               className="relative flex flex-col justify-center items-center ml-2 bg-white rounded-xl shadow-md p-2 border border-gray-200 focus:outline-none transition-all hover:shadow-lg hover:scale-105"
               onClick={toggleMenu}
