@@ -30,6 +30,7 @@ Tailwind CSS 4 – Utility-first styling
 
 Swiggy API – Live restaurant data
 
+@react-redux.js/toolkit for state Management
 
 
 ---
