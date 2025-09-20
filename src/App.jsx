@@ -12,6 +12,8 @@ import { lazy, Suspense, useEffect, useState } from "react";
 import Shimmer from "./components/Shimmer";
 import UserContext from "./utils/UserContext";
 import { Toaster } from "react-hot-toast";
+import { Provider } from "react-redux";
+import appStore from "./utils/appStore";
 
 // Lazy loading....
 const Grocery = lazy(() => import("./components/Grocery"));
@@ -29,6 +31,7 @@ const AppLayout = () => {
 
 
   return (
+    <Provider store= {appStore}>
     <UserContext.Provider value={{loggedInUser: userName}}>
     <Toaster position= "top-right" reverseOrder={false}/>
     <div className="app flex flex-col min-h-screen">
@@ -39,7 +42,7 @@ const AppLayout = () => {
       <Footer />
     </div>
     </UserContext.Provider>
-
+    </Provider>
   );
 };
 
