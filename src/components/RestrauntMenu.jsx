@@ -139,7 +139,6 @@ const RestrauntMenu = () => {
         <p className="text-gray-500">No menu items available</p>
       )}
 
-
       {cart.length > 0 && (
         <div className="mt-10 bg-gray-100 p-4 rounded-lg shadow">
           <h3 className="text-xl font-semibold text-black mb-3">
