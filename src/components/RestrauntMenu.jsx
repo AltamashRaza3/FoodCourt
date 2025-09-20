@@ -78,7 +78,7 @@ const RestrauntMenu = () => {
           <span>
             📍 {resInfo.locality || ""}, {resInfo.areaName || ""}
           </span>
-          <button className="bg-red-500 hover:bg-red-600 text-white font-semibold px-4 py-2 rounded transition-colors duration-200">
+          <button className="bg-red-500 hover:bg-red-700 text-white font-semibold px-4 py-2 rounded-lg shadow-md hover:shadow-lg transition-all duration-300">
             Buy Now
           </button>
         </div>
@@ -126,10 +126,9 @@ const RestrauntMenu = () => {
                   : "—"}
               </p>
 
-              {/* 🛒 Add to Cart Button */}
               <button
                 onClick={() => handleAddToCart(item)}
-                className="mt-4 bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded transition-colors duration-200"
+                className="mt-4 bg-green-500 hover:bg-green-700 text-white font-semibold px-4 py-2 rounded-lg shadow-md hover:shadow-lg transition-all duration-300"
               >
                 Add to Cart
               </button>
@@ -140,10 +139,12 @@ const RestrauntMenu = () => {
         <p className="text-gray-500">No menu items available</p>
       )}
 
-      {/* 🛒 Simple Cart Summary */}
+
       {cart.length > 0 && (
         <div className="mt-10 bg-gray-100 p-4 rounded-lg shadow">
-          <h3 className="text-xl font-semibold text-black mb-3">Cart ({cart.length})</h3>
+          <h3 className="text-xl font-semibold text-black mb-3">
+            Cart ({cart.length})
+          </h3>
           <ul className="list-disc pl-6">
             {cart.map((item, index) => (
               <li key={index} className="text-gray-700">
