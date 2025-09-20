@@ -11,6 +11,7 @@ import RestrauntMenu from "./components/RestrauntMenu";
 import { lazy, Suspense, useEffect, useState } from "react";
 import Shimmer from "./components/Shimmer";
 import UserContext from "./utils/UserContext";
+import { Toaster } from "react-hot-toast";
 
 // Lazy loading....
 const Grocery = lazy(() => import("./components/Grocery"));
@@ -29,6 +30,7 @@ const AppLayout = () => {
 
   return (
     <UserContext.Provider value={{loggedInUser: userName}}>
+    <Toaster position= "top-right" reverseOrder={false}/>
     <div className="app flex flex-col min-h-screen">
       <Header />
       <main className="flex-grow">
