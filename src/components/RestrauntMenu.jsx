@@ -6,6 +6,7 @@ import { MENU_API } from "../utils/constants";
 const RestrauntMenu = () => {
   const [resInfo, setResInfo] = useState(null);
   const [menuItems, setMenuItems] = useState([]);
+  const [cart, setCart] = useState([]); // 🛒 Local cart state
 
   const { resId } = useParams();
 
@@ -50,6 +51,12 @@ const RestrauntMenu = () => {
     }
   };
 
+  // 🛒 Add to cart handler
+  const handleAddToCart = (item) => {
+    setCart((prevCart) => [...prevCart, item]);
+    alert(`${item?.name} added to cart!`);
+  };
+
   if (!resInfo) {
     return <Shimmer />;
   }
@@ -71,7 +78,7 @@ const RestrauntMenu = () => {
           <span>
             📍 {resInfo.locality || ""}, {resInfo.areaName || ""}
           </span>
-          <button className="bg-red-500 hover:bg-red-600 !bg-red-500 !hover:bg-red-600 text-white font-semibold px-4 py-2 rounded transition-colors duration-200">
+          <button className="bg-red-500 hover:bg-red-600 text-white font-semibold px-4 py-2 rounded transition-colors duration-200">
             Buy Now
           </button>
         </div>
@@ -118,11 +125,38 @@ const RestrauntMenu = () => {
                   ? (item.defaultPrice / 100).toFixed(2)
                   : "—"}
               </p>
+
+              {/* 🛒 Add to Cart Button */}
+              <button
+                onClick={() => handleAddToCart(item)}
+                className="mt-4 bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded transition-colors duration-200"
+              >
+                Add to Cart
+              </button>
             </div>
           ))}
         </div>
       ) : (
         <p className="text-gray-500">No menu items available</p>
+      )}
+
+      {/* 🛒 Simple Cart Summary */}
+      {cart.length > 0 && (
+        <div className="mt-10 bg-gray-100 p-4 rounded-lg shadow">
+          <h3 className="text-xl font-semibold text-black mb-3">Cart ({cart.length})</h3>
+          <ul className="list-disc pl-6">
+            {cart.map((item, index) => (
+              <li key={index} className="text-gray-700">
+                {item?.name} – ₹
+                {item?.price
+                  ? (item.price / 100).toFixed(2)
+                  : item?.defaultPrice
+                  ? (item.defaultPrice / 100).toFixed(2)
+                  : "—"}
+              </li>
+            ))}
+          </ul>
+        </div>
       )}
     </div>
   );
