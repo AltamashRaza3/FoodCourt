@@ -1,0 +1,1 @@
+import{j as e}from"./index-C0IzShBK.js";const r=()=>e.jsx("div",{className:"flex justify-center items-center min-h-[40vh]",children:e.jsx("h1",{className:"text-2xl md:text-3xl text-center text-white p-4",children:"Our Grocery store is coming very soon..."})});export{r as default};
