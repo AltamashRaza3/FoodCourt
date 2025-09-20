@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import Shimmer from "./Shimmer";
 import { useParams } from "react-router-dom";
 import { MENU_API } from "../utils/constants";
+import toast from "react-hot-toast";
 
 const RestrauntMenu = () => {
   const [resInfo, setResInfo] = useState(null);
@@ -54,7 +55,7 @@ const RestrauntMenu = () => {
   // 🛒 Add to cart handler
   const handleAddToCart = (item) => {
     setCart((prevCart) => [...prevCart, item]);
-    alert(`${item?.name} added to cart!`);
+    toast.success(`${item?.name} added to cart!`);
   };
 
   if (!resInfo) {
