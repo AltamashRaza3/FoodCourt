@@ -3,13 +3,15 @@ import logo from "../assets/logo.png";
 import { Link } from "react-router-dom";
 import useOnlineStatus from "./UseOnlineStatus";
 import UserContext from "../utils/UserContext";
+import { useSelector } from "react-redux";
 
 const Header = () => {
   const [btnName, setBtnName] = useState("Login");
   const [menuOpen, setMenuOpen] = useState(false);
   const onlineStatus = useOnlineStatus();
   const {loggedInUser} = useContext(UserContext);
-  
+
+  const cartItems= useSelector((store) => store.cart.items);
 
   useEffect(() => {
     console.log("Useeffect called");
@@ -85,9 +87,10 @@ const Header = () => {
                   Contact us
                 </Link>
               </li>
+              {/* Subscrbing to the store using selector  */}
               <li className="hover:text-orange-500 cursor-pointer">
                 <Link to="/cart" onClick={closeMenu}>
-                  Cart
+                  Cart {cartItems}
                 </Link>
               </li>
               <li className="hover:text-orange-500 cursor-pointer">
