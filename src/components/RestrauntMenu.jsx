@@ -3,6 +3,8 @@ import Shimmer from "./Shimmer";
 import { useParams } from "react-router-dom";
 import { MENU_API } from "../utils/constants";
 import toast from "react-hot-toast";
+import { useDispatch } from "react-redux";
+import { addItem } from "../utils/cartSlice";
 
 const RestrauntMenu = () => {
   const [resInfo, setResInfo] = useState(null);
@@ -52,10 +54,15 @@ const RestrauntMenu = () => {
     }
   };
 
+  const dispatch = useDispatch();
+  
   // 🛒 Add to cart handler
   const handleAddToCart = (item) => {
     setCart((prevCart) => [...prevCart, item]);
+    // Dispatching an action to add items in cart
+    dispatch(addItem())
     toast.success(`${item?.name} added to cart!`);
+
   };
 
   if (!resInfo) {

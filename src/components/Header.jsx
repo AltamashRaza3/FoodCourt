@@ -88,9 +88,9 @@ const Header = () => {
                 </Link>
               </li>
               {/* Subscrbing to the store using selector  */}
-              <li className="hover:text-orange-500 cursor-pointer">
+              <li className="hover:text-orange-500 text-black cursor-pointer">
                 <Link to="/cart" onClick={closeMenu}>
-                  Cart {cartItems}
+                  Cart - {cartItems.length}
                 </Link>
               </li>
               <li className="hover:text-orange-500 cursor-pointer">
