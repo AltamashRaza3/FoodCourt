@@ -26,8 +26,20 @@ const Header = () => {
         <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
           {/* Logo + Title */}
           <div className="flex items-center gap-3">
-            <img src={logo} alt="FoodCourt Logo" className="h-12 w-auto" />
-            <span className="text-2xl font-bold text-gray-800">FoodCourt</span>
+            <Link
+              to="/"
+              onClick={() => setMenuOpen(false)}
+              className="flex items-center gap-3"
+            >
+              <img
+                src={logo}
+                alt="FoodCourt Logo"
+                className="h-12 w-auto cursor-pointer"
+              />
+              <span className="text-2xl font-bold text-gray-800">
+                FoodCourt
+              </span>
+            </Link>
           </div>
 
           {/* Online status + Hamburger */}
