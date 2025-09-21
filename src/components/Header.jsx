@@ -88,11 +88,21 @@ const Header = () => {
                 </Link>
               </li>
               {/* Subscrbing to the store using selector  */}
-              <li className="hover:text-orange-500 text-black cursor-pointer">
-                <Link to="/cart" onClick={closeMenu}>
-                  Cart - {cartItems.length}
+              <li className="hover:text-orange-500 cursor-pointer relative">
+                <Link
+                  to="/cart"
+                  onClick={closeMenu}
+                  className="flex items-center gap-1"
+                >
+                  Cart
+                  {cartItems.length > 0 && (
+                    <span className="absolute -top-2 -right-3 bg-orange-500 text-white text-xs px-2 py-0.5 rounded-full">
+                      {cartItems.length}
+                    </span>
+                  )}
                 </Link>
               </li>
+
               <li className="hover:text-orange-500 cursor-pointer">
                 <Link to="/grocery" onClick={closeMenu}>
                   Grocery
