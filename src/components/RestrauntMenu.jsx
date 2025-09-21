@@ -55,14 +55,13 @@ const RestrauntMenu = () => {
   };
 
   const dispatch = useDispatch();
-  
+
   // 🛒 Add to cart handler
   const handleAddToCart = (item) => {
     setCart((prevCart) => [...prevCart, item]);
     // Dispatching an action to add items in cart
-    dispatch(addItem())
+    dispatch(addItem(item))
     toast.success(`${item?.name} added to cart!`);
-
   };
 
   if (!resInfo) {
