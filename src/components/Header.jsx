@@ -1,4 +1,4 @@
-import React, { useState, useEffect,useContext } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import logo from "../assets/logo.png";
 import { Link } from "react-router-dom";
 import useOnlineStatus from "./UseOnlineStatus";
@@ -9,9 +9,9 @@ const Header = () => {
   const [btnName, setBtnName] = useState("Login");
   const [menuOpen, setMenuOpen] = useState(false);
   const onlineStatus = useOnlineStatus();
-  const {loggedInUser} = useContext(UserContext);
+  const { loggedInUser } = useContext(UserContext);
 
-  const cartItems= useSelector((store) => store.cart.items);
+  const cartItems = useSelector((store) => store.cart.items);
 
   useEffect(() => {
     console.log("Useeffect called");
@@ -30,7 +30,7 @@ const Header = () => {
             <span className="text-2xl font-bold text-gray-800">FoodCourt</span>
           </div>
 
-          {/* Container for Online Status and Hamburger button, no gap */}
+          {/* Online status + Hamburger */}
           <div className="flex items-center text-gray-900 md:hidden">
             <div>{onlineStatus ? "✅" : "🔴"}</div>
             <button
@@ -46,7 +46,7 @@ const Header = () => {
                 }`}
               ></span>
 
-              {/* Middle bar (hidden when open) */}
+              {/* Middle bar */}
               <span
                 className={`block w-8 h-1 rounded-full bg-gradient-to-r from-orange-500 to-pink-600 transition-all duration-300 ${
                   menuOpen ? "opacity-0" : "opacity-100"
@@ -68,31 +68,46 @@ const Header = () => {
               menuOpen ? "block" : "hidden"
             } absolute top-full left-0 w-full bg-white md:static md:block md:w-auto mt-4 md:mt-0 z-40 shadow-md md:shadow-none`}
           >
-            <ul className="flex flex-col md:flex-row gap-6 items-center text-lg text-gray-700 font-medium px-6 py-4 md:p-0">
-              {/* Online status inside nav for larger screens */}
+            <ul className="flex flex-col md:flex-row gap-6 items-center text-lg font-medium px-6 py-4 md:p-0">
+              {/* Online status for larger screens */}
               <li className="hidden md:block">{onlineStatus ? "🟢" : "🔴"}</li>
 
-              <li className="hover:text-orange-500 cursor-pointer">
-                <Link to="/" onClick={closeMenu}>
+              <li>
+                <Link
+                  to="/"
+                  onClick={closeMenu}
+                  className="text-gray-800 no-underline hover:text-orange-500 transition-colors"
+                >
                   Home
                 </Link>
               </li>
-              <li className="hover:text-orange-500 cursor-pointer">
-                <Link to="/about" onClick={closeMenu}>
+
+              <li>
+                <Link
+                  to="/about"
+                  onClick={closeMenu}
+                  className="text-gray-800 no-underline hover:text-orange-500 transition-colors"
+                >
                   About Us
                 </Link>
               </li>
-              <li className="hover:text-orange-500 cursor-pointer">
-                <Link to="/contact" onClick={closeMenu}>
-                  Contact us
+
+              <li>
+                <Link
+                  to="/contact"
+                  onClick={closeMenu}
+                  className="text-gray-800 no-underline hover:text-orange-500 transition-colors"
+                >
+                  Contact Us
                 </Link>
               </li>
-              {/* Subscrbing to the store using selector  */}
-              <li className="hover:text-orange-500 cursor-pointer relative">
+
+              {/* Cart with badge */}
+              <li className="relative">
                 <Link
                   to="/cart"
                   onClick={closeMenu}
-                  className="flex items-center gap-1"
+                  className="flex items-center gap-1 text-gray-800 no-underline hover:text-orange-500 transition-colors"
                 >
                   Cart
                   {cartItems.length > 0 && (
@@ -103,11 +118,17 @@ const Header = () => {
                 </Link>
               </li>
 
-              <li className="hover:text-orange-500 cursor-pointer">
-                <Link to="/grocery" onClick={closeMenu}>
+              <li>
+                <Link
+                  to="/grocery"
+                  onClick={closeMenu}
+                  className="text-gray-800 no-underline hover:text-orange-500 transition-colors"
+                >
                   Grocery
                 </Link>
               </li>
+
+              {/* Login / Logout */}
               <button
                 className="login px-4 py-1 border border-orange-500 rounded-md text-orange-500 hover:bg-orange-500 hover:text-white transition-colors"
                 onClick={() => {
@@ -118,9 +139,9 @@ const Header = () => {
               >
                 {btnName}
               </button>
-              <li className="hover:text-orange-500 cursor-pointer">
-                {loggedInUser}
-              </li>
+
+              {/* Logged in User */}
+              <li className="text-gray-800">{loggedInUser}</li>
             </ul>
           </nav>
         </div>
