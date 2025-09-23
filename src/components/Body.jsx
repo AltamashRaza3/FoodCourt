@@ -15,10 +15,9 @@ const Body = () => {
 
   const fetchData = async () => {
     const data = await fetch(
-      "https://corsproxy.io/https://www.swiggy.com/dapi/restaurants/list/v5?lat=25.59430&lng=85.13520&collection=83639&tags=layout_CCS_Biryani&sortBy=&filters=&type=rcv2&offset=0&page_type=null"
+      "https://corsproxy.io/https://www.swiggy.com/dapi/restaurants/list/v5?lat=28.5492259&lng=77.2963284&collection=83639&tags=layout_CCS_Biryani&sortBy=&filters=&type=rcv2&offset=0&page_type=null"
     );
     const json = await data.json();
-    console.log(json);
     const restaurantCards = json?.data?.cards?.filter(
       (card) =>
         card?.card?.card?.["@type"] ===

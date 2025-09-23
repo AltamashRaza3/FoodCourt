@@ -29,7 +29,8 @@ const RestrauntMenu = () => {
           "type.googleapis.com/swiggy.presentation.food.v2.Restaurant"
       );
       if (resMenuCard) setResInfo(resMenuCard?.card?.card?.info);
-
+      console.log("Restaurant Info (resInfo):", resMenuCard?.card?.card?.info);
+      
       // Menu items
       const menuCards =
         json?.data?.cards?.find((card) => card.groupedCard)?.groupedCard
@@ -72,13 +73,14 @@ const RestrauntMenu = () => {
         <div className="mt-3 flex flex-wrap items-center justify-center gap-4 text-gray-700">
           <span>⭐ {resInfo.avgRating || "N/A"}</span>
           <span>{resInfo.costForTwoMessage || "Cost info not available"}</span>
-          <span>⏱ {resInfo?.sla?.deliveryTime || "--"} mins</span>
+          <span>
+            ⏱ {resInfo?.sla?.deliveryTime ?? resInfo?.sla?.slaString ?? "--"}{" "}
+            mins
+          </span>
+
           <span>
             📍 {resInfo.locality || ""}, {resInfo.areaName || ""}
           </span>
-          <button className="bg-black !text-orange-500 font-semibold px-4 py-2 rounded-lg shadow-md hover:!text-white hover:bg-black hover:shadow-lg transition-all duration-300">
-            Buy Now
-          </button>
         </div>
       </div>
 
@@ -123,6 +125,9 @@ const RestrauntMenu = () => {
                     : item?.defaultPrice
                     ? (item.defaultPrice / 100).toFixed(2)
                     : "—"}
+                </p>
+                <p className="text-gray-600 text-sm mt-1">
+                  📍 <b>{resInfo.locality}</b>, {resInfo.areaName}
                 </p>
               </div>
 
